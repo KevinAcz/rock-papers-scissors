@@ -11,9 +11,14 @@ function getComputerChoice () {
         return 'Scissors';
     }
 }
-console.log(getComputerChoice() );
-function round (playerSelection, computerSelection) {
 
+function playRound (playerSelection, computerSelection) {
+    //Check the capitalization
+    let firstLetter = playerSelection[0].toUpperCase();
+    playerSelection = playerSelection.toLowerCase();
+    let caseCheck = (playerSelection) => firstLetter + playerSelection.slice(1);
+    playerSelection = caseCheck(playerSelection);
+    //
     if (playerSelection === 'Rock' && computerSelection === 'Paper') {
         return ('You Lose! Paper beats Rock');
     }
@@ -24,13 +29,20 @@ function round (playerSelection, computerSelection) {
         return ('You Lose! Scissors beat Paper');
     }
     else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        return ('You You Win! Rock beat Scissors');
+        return ('You Win! Rock beat Scissors');
     }
     else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
         return ('You Lose! Rock beat Scissors') 
     }
     else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        return('You Win! Scissors beat Paper');
+        return ('You Win! Scissors beat Paper');
+    }
+    else {
+        return 'It\'s a tie!';
     }
 }
-console.log( round ('Rock','Paper'));
+
+let playerSelection = 'rock';
+
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
