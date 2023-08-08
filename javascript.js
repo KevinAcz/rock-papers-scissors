@@ -11,14 +11,23 @@ function getComputerChoice () {
         return 'Scissors';
     }
 }
+function checkPlayerSelection (playerSelection) {
 
-function playRound (playerSelection, computerSelection) {
     //Check the capitalization
     let firstLetter = playerSelection[0].toUpperCase();
     playerSelection = playerSelection.toLowerCase();
     let caseCheck = (playerSelection) => firstLetter + playerSelection.slice(1);
     playerSelection = caseCheck(playerSelection);
     //
+    if (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors') {
+        return false;
+    }
+    else {
+        return playerSelection;
+    }
+}
+
+function playRound (playerSelection, computerSelection) {
 
     if (playerSelection === 'Rock' && computerSelection === 'Paper') {
         computerScore++;
@@ -30,15 +39,15 @@ function playRound (playerSelection, computerSelection) {
     }
     else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
         computerScore++;
-        return ('You Lose! Scissors beat Paper');
+        return ('You Lose! Scissors beats Paper');
     }
     else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
         playerScore++;
-        return ('You Win! Rock beat Scissors');
+        return ('You Win! Rock beats Scissors');
     }
     else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
         computerScore++;
-        return ('You Lose! Rock beat Scissors'); 
+        return ('You Lose! Rock beats Scissors'); 
     }
     else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
         playerScore++;
@@ -52,11 +61,24 @@ function playRound (playerSelection, computerSelection) {
 
 //DONE: Hacer que la funcion imprima 5 veces el ganador
 //DONE: HAcer que playround indique quien gana en un return
-//3 TODO: Hacer que game tenga una cuenta del puntaje y los muestre
+//DONE: Hacer que game tenga una cuenta del puntaje y los muestre
+//DONE: Hacer que el prompt verifique si el input es legal, y 
+//TODO: Verificar en caso de que se ponga un "no" o un okay
+//DONE: Hacer un intentelo otra vez ahora que hay un null
+
 function game() {
     let i = 1;
     while (i <= 5) {
-        const playerSelection = prompt(`Round ${i}! What will you play`);
+        let playerSelection = prompt(`Round ${i}! What will you play?`);
+        playerSelection = checkPlayerSelection(playerSelection);
+        if (playerSelection === null) {
+            console.log('Game aborted.');
+            return;
+        }
+        while (playerSelection === false || playerSelection === "") {
+            playerSelection = prompt("That\'s not a valid value! Try again.");
+            playerSelection = checkPlayerSelection(playerSelection);
+        }
         const computerSelection = getComputerChoice();
         const result = playRound(playerSelection, computerSelection);
         console.log(`Round number ${i}: ${result}`);
