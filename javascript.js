@@ -12,7 +12,13 @@ function getComputerChoice () {
     }
 }
 function checkPlayerSelection (playerSelection) {
-
+    //check if playerSelection is ESC or OK button
+    if (playerSelection === null) {
+        return null;
+    }
+    if (playerSelection === "") {
+        return false;
+    }
     //Check the capitalization
     let firstLetter = playerSelection[0].toUpperCase();
     playerSelection = playerSelection.toLowerCase();
@@ -59,23 +65,17 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-//DONE: Hacer que la funcion imprima 5 veces el ganador
-//DONE: HAcer que playround indique quien gana en un return
-//DONE: Hacer que game tenga una cuenta del puntaje y los muestre
-//DONE: Hacer que el prompt verifique si el input es legal, y 
-//TODO: Verificar en caso de que se ponga un "no" o un okay
-//DONE: Hacer un intentelo otra vez ahora que hay un null
-
 function game() {
     let i = 1;
     while (i <= 5) {
         let playerSelection = prompt(`Round ${i}! What will you play?`);
         playerSelection = checkPlayerSelection(playerSelection);
-        if (playerSelection === null) {
-            console.log('Game aborted.');
-            return;
-        }
-        while (playerSelection === false || playerSelection === "") {
+
+        while (playerSelection === false || playerSelection === null) {
+            if (playerSelection === null) {
+                console.log('Game aborted.');
+                return;
+            }
             playerSelection = prompt("That\'s not a valid value! Try again.");
             playerSelection = checkPlayerSelection(playerSelection);
         }
