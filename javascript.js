@@ -11,27 +11,6 @@ function getComputerChoice () {
         return 'Scissors';
     }
 }
-function checkPlayerSelection (playerSelection) {
-    //check if playerSelection is ESC or OK button
-    if (playerSelection === null) {
-        return null;
-    }
-    if (playerSelection === "") {
-        return false;
-    }
-    //Check the capitalization
-    let firstLetter = playerSelection[0].toUpperCase();
-    playerSelection = playerSelection.toLowerCase();
-    let caseCheck = (playerSelection) => firstLetter + playerSelection.slice(1);
-    playerSelection = caseCheck(playerSelection);
-    //
-    if (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors') {
-        return false;
-    }
-    else {
-        return playerSelection;
-    }
-}
 
 function playRound (playerSelection, computerSelection) {
 
@@ -68,35 +47,26 @@ function playRound (playerSelection, computerSelection) {
 function game() {
     let i = 1;
     while (i <= 5) {
-        let playerSelection = prompt(`Round ${i}! What will you play?`);
-        playerSelection = checkPlayerSelection(playerSelection);
-
-        while (playerSelection === false || playerSelection === null) {
-            if (playerSelection === null) {
-                console.log('Game aborted.');
-                return;
-            }
-            playerSelection = prompt("That\'s not a valid value! Try again.");
-            playerSelection = checkPlayerSelection(playerSelection);
-        }
+        let playerSelection = prompt(`Round ${i}! What will you play?`); //cambiar esto a DOM
+    
         const computerSelection = getComputerChoice();
         const result = playRound(playerSelection, computerSelection);
-        console.log(`Round number ${i}: ${result}`);
+        console.log(`Round number ${i}: ${result}`); //cambiar a DOM
         i++;
     }
     console.log(`Player Score: ${playerScore}`);
     console.log(`Computer Score: ${computerScore}`);
     if (playerScore > computerScore) {
-        console.log('You win! Congratulations!');
+        console.log('You win! Congratulations!'); //cambiar a DOM
     }
     else if (playerScore < computerScore) {
-        console.log('You lost! Try again!');
+        console.log('You lost! Try again!'); //cambiar a DOM
     }
     else {
-        console.log(`Tie! You have tied ${tieScore} times!` );
+        console.log(`Tie! You have tied ${tieScore} times!` ); //cambiar a DOM
     }
 }
 let computerScore = 0;
 let playerScore = 0;
 let tieScore = 0;
-game();
+// game();

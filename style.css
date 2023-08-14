@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    gap: 20px;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+/* button {
+    all: unset;
+} */
+
+.content {
+    flex: 1;
+}
+.header,
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #331D2C;
+    color: white;
+}
+.header {
+    font-size: 50px;
+    padding: 20px;
+}
+.scoreboard {
+    background-color: #3F2E3E;
+    display: flex;
+    flex-direction: column;
+
+}
+.scoreboard-title {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+}
+.human-score-container,
+.machine-score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.round-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+    gap: 10px;
+}
+.current-scores {
+    font-size: 40px;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    background-color: #A78295;
+}
+.player-selection-container {
+    background-color:#EFE1D1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+#rock, #papers, #scissors {
+    padding: 20px;
+    background-color: #3F2E3E;
+    color: white;
+    font-size: 45px;
+}
+.player-selection-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding:0px;
+    font-size: 45px;
+    color: white;
+}
+.player-selection {
+    display: flex;
+    gap: 80px;
+}
+.log {
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: #3F2E3E;
+    font-size:25px;
+    padding: 20px;
+    flex:1;
+}
+.round-number {
+    color: #EFE1D1;
+}
+.footer {
+    font-size: 20px;
+    padding: 20px;
+}
