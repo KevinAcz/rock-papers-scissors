@@ -83,23 +83,15 @@ function game(playerSelection) {
                 log.textContent = 'You lose! Better luck next time!';
             }
             else {
-                log.textContent = `Tie! You hav tied ${tieScore} times!`;
+                log.textContent = `Tie! You have the same points!`;
             }             
             //Deletear rock paper scissors button and add new to restart game
-            
-
-            //Reiniciar el juego
-            roundCounter = 0;
-            playerScore = 0;
-            computerScore = 0;
-            tieScore = 0;
-
-            // Reiniciar los elementos result
-    //         for (let i = 1; i <= 5; i++) {
-    //             let currentRoundDiv = document.querySelector(`#result-${i}`);
-    //             currentRoundDiv.classList.remove('win', 'lose', 'tie');
-    //             currentRoundDiv.textContent = '';
-    // }
+            playerSelectionContainer.appendChild(restartButton);
+            rock.style.display = 'none';
+            papers.style.display = 'none';
+            scissors.style.display = 'none';
+            restartButton.style.display = 'flex';
+            //Agregar nuevo boton para reinciar juego
         } 
     }
 
@@ -107,6 +99,7 @@ let computerScore = 0;
 let playerScore = 0;
 let tieScore = 0;
 
+const playerSelectionContainer = document.querySelector('.player-selection');
 const log = document.querySelector('#log');
 const roundNumber = document.querySelector('#round-number');
 const roundMarker = document.querySelector('#round-counter');
@@ -115,9 +108,35 @@ const papers = document.querySelector('#papers');
 const scissors = document.querySelector ('#scissors');
 const humanScore = document.querySelector('#human-score');
 const machineScore = document.querySelector('#machine-score');
+const restartButton = document.createElement('button');
+
+restartButton.classList.add('restartButton');
+restartButton.textContent = 'RESTART';
 
 let roundCounter = 0;
+restartButton.addEventListener('click', function() {
+    roundCounter = 0;
+    playerScore = 0;
+    computerScore = 0;
+    tieScore = 0;
+    //Reiniciar los elementos result
+    for (let i = 1; i <= 5; i++) {
+        let currentRoundDiv = document.querySelector(`#result-${i}`);
+        currentRoundDiv.classList.remove('win', 'lose', 'tie');
+        currentRoundDiv.textContent = '';
+       }
+       rock.style.display = 'flex';
+       papers.style.display = 'flex';
+       scissors.style.display = 'flex';
+       restartButton.style.display = 'none';
 
+       humanScore.textContent = '0';
+       machineScore.textContent = '0';
+       log.textContent = 'New match! Good luck!';
+       roundNumber.textContent = 'START THE GAME';
+
+
+})
 rock.addEventListener('click', function () {
     game('Rock');
   });
