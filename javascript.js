@@ -1,4 +1,4 @@
-//TODO: En la iteracion final, que muestre que se gano modificando los divs
+
 function getComputerChoice () { 
     //return either rock paper scissors randomly  
     let choice = Math.floor( Math.random() * 3) + 1;
@@ -64,34 +64,39 @@ function game(playerSelection) {
         if (result.includes('Win')) {
            currentRoundDiv.classList.add('win');
            currentRoundDiv.textContent = 'WIN!';
+           playerIcon.textContent = '😄';
         }
         else if (result.includes('Lose')) {
             currentRoundDiv.classList.add('lose');
             currentRoundDiv.textContent = 'LOSE!';
+            playerIcon.textContent = '😰';
         }
         else {
             currentRoundDiv.classList.add('tie');
             currentRoundDiv.textContent = 'TIE!';
+            playerIcon.textContent = '😫';
         }
         if (roundCounter === 5) {
 
             //Check who won
             if (playerScore > computerScore) {
                 log.textContent = 'You won! Congratulations!';
+                playerIcon.textContent = '😁';
             }
             else if (playerScore < computerScore) {
                 log.textContent = 'You lose! Better luck next time!';
+                playerIcon.textContent = '😭';
             }
             else {
                 log.textContent = `Tie! You have the same points!`;
+                playerIcon.textContent = '😣';
             }             
-            //Deletear rock paper scissors button and add new to restart game
+            //Hide rock paper scissors buttons and add restart button to restart game
             playerSelectionContainer.appendChild(restartButton);
             rock.style.display = 'none';
             papers.style.display = 'none';
             scissors.style.display = 'none';
             restartButton.style.display = 'flex';
-            //Agregar nuevo boton para reinciar juego
         } 
     }
 
@@ -99,6 +104,7 @@ let computerScore = 0;
 let playerScore = 0;
 let tieScore = 0;
 
+const playerIcon = document.querySelector('#player-icon');
 const playerSelectionContainer = document.querySelector('.player-selection');
 const log = document.querySelector('#log');
 const roundNumber = document.querySelector('#round-number');
@@ -130,10 +136,12 @@ restartButton.addEventListener('click', function() {
        scissors.style.display = 'flex';
        restartButton.style.display = 'none';
 
+    //restart default values
        humanScore.textContent = '0';
        machineScore.textContent = '0';
        log.textContent = 'New match! Good luck!';
        roundNumber.textContent = 'START THE GAME';
+       playerIcon.textContent = '😄';
 
 
 })
