@@ -1,3 +1,4 @@
+//TODO: En la iteracion final, que muestre que se gano modificando los divs
 function getComputerChoice () { 
     //return either rock paper scissors randomly  
     let choice = Math.floor( Math.random() * 3) + 1;
@@ -44,29 +45,88 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let i = 1;
-    while (i <= 5) {
-        let playerSelection = prompt(`Round ${i}! What will you play?`); //cambiar esto a DOM
-    
+function game(playerSelection) {
+
+        console.log(playerSelection);
+        roundCounter++;
+
         const computerSelection = getComputerChoice();
+
         const result = playRound(playerSelection, computerSelection);
-        console.log(`Round number ${i}: ${result}`); //cambiar a DOM
-        i++;
+
+        roundNumber.textContent = `ROUND ${roundCounter} `;
+        log.textContent = `${result}`;
+
+        humanScore.textContent = `${playerScore}`;
+        machineScore.textContent = `${computerScore}`;
+
+        let currentRoundDiv = document.querySelector(`#result-${roundCounter}`);
+        if (result.includes('Win')) {
+           currentRoundDiv.classList.add('win');
+           currentRoundDiv.textContent = 'WIN!';
+        }
+        else if (result.includes('Lose')) {
+            currentRoundDiv.classList.add('lose');
+            currentRoundDiv.textContent = 'LOSE!';
+        }
+        else {
+            currentRoundDiv.classList.add('tie');
+            currentRoundDiv.textContent = 'TIE!';
+        }
+        if (roundCounter === 5) {
+
+            //Check who won
+            if (playerScore > computerScore) {
+                log.textContent = 'You won! Congratulations!';
+            }
+            else if (playerScore < computerScore) {
+                log.textContent = 'You lose! Better luck next time!';
+            }
+            else {
+                log.textContent = `Tie! You hav tied ${tieScore} times!`;
+            }             
+            //Deletear rock paper scissors button and add new to restart game
+            
+
+            //Reiniciar el juego
+            roundCounter = 0;
+            playerScore = 0;
+            computerScore = 0;
+            tieScore = 0;
+
+            // Reiniciar los elementos result
+    //         for (let i = 1; i <= 5; i++) {
+    //             let currentRoundDiv = document.querySelector(`#result-${i}`);
+    //             currentRoundDiv.classList.remove('win', 'lose', 'tie');
+    //             currentRoundDiv.textContent = '';
+    // }
+        } 
     }
-    console.log(`Player Score: ${playerScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-    if (playerScore > computerScore) {
-        console.log('You win! Congratulations!'); //cambiar a DOM
-    }
-    else if (playerScore < computerScore) {
-        console.log('You lost! Try again!'); //cambiar a DOM
-    }
-    else {
-        console.log(`Tie! You have tied ${tieScore} times!` ); //cambiar a DOM
-    }
-}
+
 let computerScore = 0;
 let playerScore = 0;
 let tieScore = 0;
-// game();
+
+const log = document.querySelector('#log');
+const roundNumber = document.querySelector('#round-number');
+const roundMarker = document.querySelector('#round-counter');
+const rock = document.querySelector('#rock');
+const papers = document.querySelector('#papers');
+const scissors = document.querySelector ('#scissors');
+const humanScore = document.querySelector('#human-score');
+const machineScore = document.querySelector('#machine-score');
+
+let roundCounter = 0;
+
+rock.addEventListener('click', function () {
+    game('Rock');
+  });
+papers.addEventListener('click', function () {
+    game('Paper');
+  });
+  scissors.addEventListener('click', function () {
+    game('Scissors');
+  });
+
+
+

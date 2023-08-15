@@ -2,10 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
-    <script src="javascript.js"></script>
+    <script src="javascript.js" defer></script>
     <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
     <div class="header">Rock, Paper and Scissors!</div>
 
@@ -18,14 +17,15 @@
             <div class="current-scores">
                 <div class="human-score-container">
                     <div id="player-icon">😄</div>
-                    <div id="human-score">2</div>
+                    <div id="human-score">0</div>
                 </div>
                 <div class="machine-score-container">
                     <div id="machine-icon">&#129302;</div>
-                    <div id="machine-score">3</div>
+                    <div id="machine-score">0</div>
                 </div>
             </div>
-            <div class="round-counter">ROUND 3/5
+            <div class="round-counter">
+                <div id="round-number">START THE GAME</div>
                 <p class="player-selection-message">CHOOSE YOUR WEAPON!</p>
             </div>
         </div>
@@ -38,8 +38,17 @@
             </div>
         </div>
 
-        <div class="log"><span class="round-number">ROUND 1: YOU WIN! &bull;&nbsp; </span> You choosed paper and the machine rock!</div>
 
+            <!-- <div class="log"><span class="round-number">ROUND 1: YOU WIN! &bull;&nbsp; </span> You choosed paper and the machine rock!</div> -->
+        <div id="log"><span class="up-to-5-rounds">5 rounds &bull;&nbsp; </span> Good luck!</div>
+        <div class="result-display-container">
+            <div id="result-1"></div>
+            <div id="result-2"></div>
+            <div id="result-3"></div>
+            <div id="result-4"></div>
+            <div id="result-5"></div>
+        </div>
+        
     </div>
 
     <div class="footer">
